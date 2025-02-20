@@ -32,21 +32,48 @@ class SpaceRoute {
 private:
     Node<T>* head;
     Node<T>* tail;
+    int length; // Added length function for insertion of waypoints
 
 public:
-    SpaceRoute();  // Constructor
+    SpaceRoute(); // Constructor
     ~SpaceRoute(); // Destructor
 
-    void addWaypointAtBeginning(T& data);
-    void addWaypointAtEnd(T& data);
-    void addWaypointAtIndex(int index, T& data);
-    void removeWaypointAtBeginning();
-    void removeWaypointAtEnd();
-    void removeWaypointAtIndex(int index);
-    void traverseForward();
-    void traverseBackward();
-    Node<T>* getWaypoint(int index);
-    void setWaypoint(int index, T& data);
+    void prepend(T* value) {
+        Node<T> newNode = new Node<T>(value);
+        if (length == 0) {
+            head = newNode;
+            tail = newNode;
+        }
+        else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+        length++;
+    }
+
+    void addWaypointAtBeginning(T& data) {
+        Node<T>* newNode = new Node<T>(data);
+        if (length == 0) { // handling edge case for empty list
+            head = newNode;
+            tail = newNode;
+            tail->next = head;
+        }
+        else {
+            newNode->next = head;
+            head = newNode;
+            tail->next = head;
+        }
+            length++;
+        }
+    //void addWaypointAtEnd(T& data);
+    //void addWaypointAtIndex(int index, T& data);
+    //void removeWaypointAtBeginning();
+    //void removeWaypointAtEnd();
+    //void removeWaypointAtIndex(int index);
+    //void traverseForward();
+    //void traverseBackward();
+    //Node<T>* getWaypoint(int index);
+    //void setWaypoint(int index, T& data);
     void print(){
 
             Node<T>* current = head;

@@ -65,7 +65,20 @@ public:
         length++;
     }
     void addWaypointAtIndex(int index, T& data) {
-
+        if (index < 0 || index > length) {
+            cout << "Index is out of bounds." << endl;
+            return false;
+        }
+        if (index == length) {
+            addWaypointAtEnd(data);
+            return true;
+        }
+        // UPDATE FOR DOUBLY LINKED
+        Node<T>* newNode = new Node<T>(data);
+        Node<T> * temp = get(index - 1);
+        newNode->next = temp->next;
+        temp->next = newNode;
+        length++;
     }
     //void removeWaypointAtBeginning();
     //void removeWaypointAtEnd();

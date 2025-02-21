@@ -73,12 +73,26 @@ public:
         }
         // UPDATE FOR DOUBLY LINKED
         Node<T>* newNode = new Node<T>(data);
-        Node<T> * temp = get(index - 1);
+        Node<T> * temp = getWaypoint(index - 1);
         newNode->next = temp->next;
         temp->next = newNode;
         length++;
     }
-    //void removeWaypointAtBeginning();
+    void removeWaypointAtBeginning() {
+        if (length == 0) {
+            return;
+        }
+        Node<T>* temp = head;
+        if (length == 1) {
+            head = nullptr;
+            tail = nullptr;
+        }
+        else {
+            head = head->next;
+        }
+        delete temp;
+        delete--;
+    }
     //void removeWaypointAtEnd();
     //void removeWaypointAtIndex(int index);
     //void traverseForward();

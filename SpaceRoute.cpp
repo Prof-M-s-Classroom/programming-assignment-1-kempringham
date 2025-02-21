@@ -32,7 +32,6 @@ class SpaceRoute {
 private:
     Node<T>* head;
     Node<T>* tail;
-    int length; // Added length function for insertion of waypoints
 
 public:
     SpaceRoute(); // Constructor
@@ -40,7 +39,7 @@ public:
 
     void addWaypointAtBeginning(T& data) {
         Node<T>* newNode = new Node<T>(data);
-        if (length == 0) {
+        if (head == nullptr) {
             head = newNode;
             tail = newNode;
         }
@@ -49,7 +48,6 @@ public:
             newNode->prev = tail;
             head = newNode;
         }
-        length++;
     }
     //void addWaypointAtEnd(T& data);
     //void addWaypointAtIndex(int index, T& data);

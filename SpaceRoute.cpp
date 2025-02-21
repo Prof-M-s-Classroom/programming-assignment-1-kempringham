@@ -38,17 +38,6 @@ public:
     SpaceRoute(); // Constructor
     ~SpaceRoute(); // Destructor
 
-    Node<T> *get(int index) {
-        if (index < 0 || index >= length) {
-            return nullptr;
-        }
-        Node<T> *temp = head;
-        for (int i = 0; i < index; i++) {
-            temp = temp->next;
-        }
-        return temp;
-    }
-
     void addWaypointAtBeginning(T& data) {
         Node<T>* newNode = new Node<T>(data);
         if (head == nullptr) {
@@ -78,11 +67,9 @@ public:
     void addWaypointAtIndex(int index, T& data) {
         if (index < 0 || index > length) {
             cout << "Index is out of bounds." << endl;
-            return false;
         }
         if (index == length) {
             addWaypointAtEnd(data);
-            return true;
         }
         // UPDATE FOR DOUBLY LINKED
         Node<T>* newNode = new Node<T>(data);
@@ -96,14 +83,22 @@ public:
     //void removeWaypointAtIndex(int index);
     //void traverseForward();
     //void traverseBackward();
-    //Node<T>* getWaypoint(int index);
+    Node<T>* getWaypoint(int index) {
+        if (index < 0 || index >= length) {
+            return nullptr;
+        }
+        Node<T> *temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp->next;
+        }
+        return temp;
+    }
+
     void setWaypoint(int index, T& data) {
-        Node<T> *temp = get(index);
+        Node<T> *temp = getWaypoint(index,data);
         if (temp) {
             temp->data = data;
-            return true;
         }
-        return false;
     }
     void print(){
 

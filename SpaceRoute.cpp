@@ -38,33 +38,19 @@ public:
     SpaceRoute(); // Constructor
     ~SpaceRoute(); // Destructor
 
-    void prepend(T* value) {
-        Node<T> newNode = new Node<T>(value);
+    void addWaypointAtBeginning(T& data) {
+        Node<T>* newNode = new Node<T>(data);
         if (length == 0) {
             head = newNode;
             tail = newNode;
         }
         else {
-            tail->next = newNode;
-            tail = newNode;
+            newNode->next = head;
+            newNode->prev = tail;
+            head = newNode;
         }
         length++;
     }
-
-    void addWaypointAtBeginning(T& data) {
-        Node<T>* newNode = new Node<T>(data);
-        if (length == 0) { // handling edge case for empty list
-            head = newNode;
-            tail = newNode;
-            tail->next = head;
-        }
-        else {
-            newNode->next = head;
-            head = newNode;
-            tail->next = head;
-        }
-            length++;
-        }
     //void addWaypointAtEnd(T& data);
     //void addWaypointAtIndex(int index, T& data);
     //void removeWaypointAtBeginning();

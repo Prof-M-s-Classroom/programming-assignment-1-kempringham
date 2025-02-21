@@ -91,7 +91,7 @@ public:
             head = head->next;
         }
         delete temp;
-        delete--;
+        length--;
     }
     //void removeWaypointAtEnd();
     //void removeWaypointAtIndex(int index);

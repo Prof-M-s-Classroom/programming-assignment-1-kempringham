@@ -49,7 +49,18 @@ public:
             head = newNode;
         }
     }
-    //void addWaypointAtEnd(T& data);
+    void addWaypointAtEnd(T& data) {
+        Node<T>* newNode = new Node<T>(data);
+        if (tail == nullptr) {
+            tail = newNode;
+            head = newNode;
+        }
+        else {
+            newNode->prev = tail;
+            newNode->next = head;
+            tail = newNode;
+        }
+    }
     //void addWaypointAtIndex(int index, T& data);
     //void removeWaypointAtBeginning();
     //void removeWaypointAtEnd();

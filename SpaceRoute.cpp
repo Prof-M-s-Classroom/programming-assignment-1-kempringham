@@ -32,11 +32,22 @@ class SpaceRoute {
 private:
     Node<T>* head;
     Node<T>* tail;
-    int length = 0;
+    int length = 0; //ADDED LENGTH??
 
 public:
     SpaceRoute(); // Constructor
     ~SpaceRoute(); // Destructor
+
+    Node<T> *get(int index) {
+        if (index < 0 || index >= length) {
+            return nullptr;
+        }
+        Node<T> *temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp->next;
+        }
+        return temp;
+    }
 
     void addWaypointAtBeginning(T& data) {
         Node<T>* newNode = new Node<T>(data);
@@ -86,7 +97,10 @@ public:
     //void traverseForward();
     //void traverseBackward();
     //Node<T>* getWaypoint(int index);
-    //void setWaypoint(int index, T& data);
+    void setWaypoint(int index, T& data) {
+        Node<T> *temp = get(index);
+        if (temp)
+    }
     void print(){
 
             Node<T>* current = head;

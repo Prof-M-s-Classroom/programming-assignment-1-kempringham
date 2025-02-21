@@ -32,6 +32,7 @@ class SpaceRoute {
 private:
     Node<T>* head;
     Node<T>* tail;
+    int length = 0;
 
 public:
     SpaceRoute(); // Constructor
@@ -48,6 +49,7 @@ public:
             newNode->prev = tail;
             head = newNode;
         }
+        length++;
     }
     void addWaypointAtEnd(T& data) {
         Node<T>* newNode = new Node<T>(data);
@@ -60,8 +62,11 @@ public:
             newNode->next = head;
             tail = newNode;
         }
+        length++;
     }
-    //void addWaypointAtIndex(int index, T& data);
+    void addWaypointAtIndex(int index, T& data) {
+
+    }
     //void removeWaypointAtBeginning();
     //void removeWaypointAtEnd();
     //void removeWaypointAtIndex(int index);

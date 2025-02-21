@@ -89,6 +89,8 @@ public:
         }
         else {
             head = head->next;
+            tail->next = head;
+            head->prev = tail;
         }
         delete temp;
         length--;

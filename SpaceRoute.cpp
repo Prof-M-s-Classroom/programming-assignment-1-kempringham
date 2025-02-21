@@ -99,7 +99,11 @@ public:
     //Node<T>* getWaypoint(int index);
     void setWaypoint(int index, T& data) {
         Node<T> *temp = get(index);
-        if (temp)
+        if (temp) {
+            temp->data = data;
+            return true;
+        }
+        return false;
     }
     void print(){
 

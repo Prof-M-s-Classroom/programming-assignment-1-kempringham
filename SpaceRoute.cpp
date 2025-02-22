@@ -32,6 +32,7 @@ class SpaceRoute {
 private:
     Node<T>* head;
     Node<T>* tail;
+    int length = 0; // Added length value
 
 public:
     SpaceRoute(); // Constructor
@@ -39,82 +40,113 @@ public:
 
     void addWaypointAtBeginning(T& data) {
         Node<T>* newNode = new Node<T>(data);
-        if (head == nullptr) {
+        if (head == nullptr) { // checks if list is empty
             head = newNode;
             tail = newNode;
         }
         else {
-            newNode->next = head;
             head->prev = newNode;
+            newNode->next = head;
             head = newNode;
             head->prev = nullptr;
         }
+        length++;
     }
     void addWaypointAtEnd(T& data) {
         Node<T>* newNode = new Node<T>(data);
-        if (tail == nullptr) {
+        if (tail == nullptr) { // checks if list is empty
             tail = newNode;
             head = newNode;
         }
         else {
-            newNode->prev = tail;
             tail->next = newNode;
+            newNode->prev = tail;
             tail = newNode;
             tail->next = nullptr;
         }
+        length++;
     }
-    //void addWaypointAtIndex(int index, T& data) {
-        //if (index < 0 || index > length) {
-            //cout << "Index is out of bounds." << endl;
-        //}
-        //if (index == length) {
-            //addWaypointAtEnd(data);
-        //}
-        // UPDATE FOR DOUBLY LINKED
-        //Node<T>* newNode = new Node<T>(data);
-        //Node<T> * temp = getWaypoint(index - 1);
-        //newNode->next = temp->next;
-        //temp->next = newNode;
-        //length++;
-    //}
-    //void removeWaypointAtBeginning() {
-        //if (length == 0) {
-            //return;
-        //}
-        //Node<T>* temp = head;
-        //if (length == 1) {
-            //head = nullptr;
-            //tail = nullptr;
-        //}
-        //else {
-            //head = head->next;
-            //tail->next = head;
-            //head->prev = tail;
-        //}
-        //delete temp;
-        //length--;
-    //}
-    //void removeWaypointAtEnd();
-    //void removeWaypointAtIndex(int index);
-    //void traverseForward();
-    //void traverseBackward();
-    //Node<T>* getWaypoint(int index) {
-        //if (index < 0 || index >= length) {
-            //return nullptr;
-        //}
-        //Node<T> *temp = head;
-        //for (int i = 0; i < index; i++) {
-            //temp = temp->next;
-        //}
-        //return temp;
-    //}
+    void addWaypointAtIndex(int index, T& data) {
+        if (index < 0 || index > length) { // checks if index is out of bounds
+            cout << "Index is out of bounds." << endl;
+        }
+        if (index == 0) { // checks if list is empty
+            addWaypointAtBeginning(data);
+        }
+        if (index == length) { // checks if the index is at the end of the list(adding tail)
+            addWaypointAtEnd(data);
+        }
+        Node<T>* newNode = new Node<T>(data);
+        Node<T> * temp = getWaypoint(index - 1);
+        newNode->next = temp->next;
+        temp->next = newNode;
+        newNode->prev = temp;
+        length++;
+    }
+    void removeWaypointAtBeginning() {
+        if (length == 0) { // checks if list is empty
+            return;
+        }
+        Node<T>* temp = head;
+        if (length == 1) {
+            head = nullptr;
+            tail = nullptr;
+        }
+        else {
+            head = head->next;
+            tail->next = head;
+            head->prev = tail;
+        }
+        delete temp;
+        length--;
+    }
+    void removeWaypointAtEnd() {
+        if (length == 0) {
+            return;
+        }
+        Node<T>* temp = head;
+        if (length == 1) {
+            head = nullptr;
+            tail = nullptr;
+        }
+        else {
+            Node<T> *pre = head;
+            while (temp-> next) {
+                pre = temp;
+                temp = temp->next;
+            }
+            tail = pre;
+            tail->next = nullptr;
+        }
+        delete temp;
+        length--;
+    }
+    void removeWaypointAtIndex(int index) {
 
-    //void setWaypoint(int index, T& data) {
-        //Node<T> *temp = getWaypoint(index,data);
-        //if (temp) {
-            //temp->data = data;
-        //}
-    //}
+    }
+    void traverseForward() {
+
+    }
+    void traverseBackward() {
+
+    }
+    Node<T>* getWaypoint(int index) {
+        if (index < 0 || index >= length) {
+            return nullptr;
+        }
+        Node<T> *temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp->next;
+        }
+        return temp;
+    }
+
+    void setWaypoint(int index, T& data) {
+        Node<T> *temp = getWaypoint(index,data);
+        if (temp) {
+            temp->data = data;
+        }
+    }
     void print(){
 
             Node<T>* current = head;

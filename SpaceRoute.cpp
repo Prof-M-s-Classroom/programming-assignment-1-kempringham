@@ -138,6 +138,7 @@ public:
         delete temp;
         length--;
     }
+
     void traverseForward() {
         Node<T> *temp = head;
         while (temp) {
@@ -158,6 +159,9 @@ public:
             //pre = curr;
             //curr = next;
         //}
+        while (tail) {
+            tail = tail->prev;
+        }
 
     }
     Node<T>* getWaypoint(int index) {

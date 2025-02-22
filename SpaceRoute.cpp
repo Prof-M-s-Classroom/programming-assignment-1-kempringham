@@ -112,7 +112,7 @@ public:
         length--;
     }
     void removeWaypointAtEnd() {
-        Node<T>* temp = head;
+        Node<T>* temp = tail;
         if (length == 0) {
             return;
         }
@@ -123,12 +123,13 @@ public:
         else {
             tail = tail->prev;
             tail->next = nullptr;
-            }
+        }
         delete temp;
         length--;
     }
     void removeWaypointAtIndex(int index) {
         if (index < 0 || index >= length) {
+            cout << "Index is out of bounds." << endl;
             return;
         }
         if (index == 0) {
@@ -166,6 +167,7 @@ public:
     Node<T>* getWaypoint(int index) {
         Node<T> *temp = head;
         if (index < 0 || index >= length) {
+            cout << "Index is out of bounds." << endl;
             return nullptr;
         }
         for (int i = 0; i < index; i++) {

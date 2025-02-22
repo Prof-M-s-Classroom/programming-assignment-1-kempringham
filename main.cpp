@@ -32,5 +32,13 @@ int main() {
     cout << "\nAfter Removing Venus: \n";
     voyagerRoute.print();
 
+    voyagerRoute.removeWaypointAtEnd();
+    cout << "\nAfter Removing Saturn: \n";
+    voyagerRoute.print();
+
+    voyagerRoute.removeWaypointAtBeginning();
+    cout << "\nAfter Removing Earth: \n";
+    voyagerRoute.print();
+
     return 0;
 }

@@ -45,10 +45,10 @@ public:
             tail = newNode;
         }
         else {
-            head->prev = newNode;
             newNode->next = head;
-            newNode->prev = nullptr;
+            head->prev = newNode;
             head = newNode;
+            head->prev = nullptr;
         }
         length++;
     }
@@ -110,14 +110,9 @@ public:
             tail = nullptr;
         }
         else {
-            Node<T> *pre = head;
-            while (temp-> next) {
-                pre = temp;
-                temp = temp->next;
-            }
-            tail = pre;
+            tail = tail->prev;
             tail->next = nullptr;
-        }
+            }
         delete temp;
         length--;
     }
@@ -126,14 +121,16 @@ public:
             return;
         }
         if (index == 0) {
-            return removeWaypointAtBeginning();
+            removeWaypointAtBeginning();
+            return;
         }
         if (index == length - 1) {
-            return removeWaypointAtEnd();
+            removeWaypointAtEnd();
+            return;
         }
         Node<T> *prev = getWaypoint(index - 1);
         Node<T>* temp = prev->next;
-        prev->next = temp-next;
+        prev->next = temp->next;
         temp->next->prev = prev;
         delete temp;
         length--;
@@ -145,30 +142,26 @@ public:
             temp = temp->next;
         }
 
-
     }
     void traverseBackward() {
-        //Node<T> * pre;
-        //Node<T> * curr;
-        //Node<T> * next;
-        //pre = nullptr;
-        //curr = head;
-        //while (curr != nullptr) {
-            //next = curr->next;
-            //curr->next = pre;
-            //pre = curr;
-            //curr = next;
-        //}
-        while (tail) {
-            tail = tail->prev;
+        Node<T> * pre;
+        Node<T> * curr;
+        Node<T> * next;
+        pre = nullptr;
+        curr = head;
+        while (curr != nullptr) {
+            next = curr->next;
+            curr->next = pre;
+            pre = curr;
+            curr = next;
         }
 
     }
     Node<T>* getWaypoint(int index) {
+        Node<T> *temp = head;
         if (index < 0 || index >= length) {
             return nullptr;
         }
-        Node<T> *temp = head;
         for (int i = 0; i < index; i++) {
             temp = temp->next;
         }

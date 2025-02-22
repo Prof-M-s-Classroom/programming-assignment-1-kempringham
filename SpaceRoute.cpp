@@ -51,7 +51,7 @@ public:
 
     void addWaypointAtBeginning(T& data) {
         Node<T>* newNode = new Node<T>(data);
-        if (head == nullptr) { // checks if list is empty
+        if (head == nullptr) { // checks for edge case: empty list
             head = newNode;
             tail = newNode;
         }
@@ -65,7 +65,7 @@ public:
     }
     void addWaypointAtEnd(T& data) {
         Node<T>* newNode = new Node<T>(data);
-        if (tail == nullptr) { // checks if list is empty
+        if (tail == nullptr) { // checks for edge case: empty list
             tail = newNode;
             head = newNode;
         }
@@ -78,13 +78,13 @@ public:
         length++;
     }
     void addWaypointAtIndex(int index, T& data) {
-        if (index < 0 || index > length) { // checks if index is out of bounds
+        if (index < 0 || index > length) { // checks for edge case: invalid index
             cout << "Index is out of bounds." << endl;
         }
-        if (index == 0) { // checks if list is empty
-            addWaypointAtBeginning(data);
+        if (index == 0) { // checks for edge case: empty list
+            addWaypointAtBeginning(data); // if list is empty, use method for adding waypoint at beginning(end would also work)
         }
-        if (index == length) { // checks if the index is at the end of the list(adding tail)
+        if (index == length) { // same as adding tail/adding waypoint at end
             addWaypointAtEnd(data);
         }
         Node<T>* newNode = new Node<T>(data);
@@ -97,10 +97,10 @@ public:
     }
     void removeWaypointAtBeginning() {
         Node<T>* temp = head;
-        if (length == 0) { // checks if list is empty
+        if (length == 0) { // checks for edge case: empty list
             return;
         }
-        if (length == 1) {
+        if (length == 1) { // if there is only one item in the list, list will become empty
             head = nullptr;
             tail = nullptr;
         }
@@ -113,10 +113,10 @@ public:
     }
     void removeWaypointAtEnd() {
         Node<T>* temp = tail;
-        if (length == 0) {
+        if (length == 0) { // checks for edge case: empty list
             return;
         }
-        if (length == 1) {
+        if (length == 1) { // if there is only one item in the list, list will become empty
             head = nullptr;
             tail = nullptr;
         }
@@ -128,15 +128,15 @@ public:
         length--;
     }
     void removeWaypointAtIndex(int index) {
-        if (index < 0 || index >= length) {
+        if (index < 0 || index >= length) { // checks for edge case: invalid index
             cout << "Index is out of bounds." << endl;
             return;
         }
-        if (index == 0) {
+        if (index == 0) { // checks for edge case: empty list
             removeWaypointAtBeginning();
             return;
         }
-        if (index == length - 1) {
+        if (index == length - 1) { // same as removing tail/the end waypoint
             removeWaypointAtEnd();
             return;
         }
@@ -166,7 +166,7 @@ public:
     }
     Node<T>* getWaypoint(int index) {
         Node<T> *temp = head;
-        if (index < 0 || index >= length) {
+        if (index < 0 || index >= length) { // checks for edge case: invalid index
             cout << "Index is out of bounds." << endl;
             return nullptr;
         }

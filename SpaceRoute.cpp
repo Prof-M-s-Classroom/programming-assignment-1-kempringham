@@ -47,8 +47,8 @@ public:
         else {
             head->prev = newNode;
             newNode->next = head;
+            newNode->prev = nullptr;
             head = newNode;
-            head->prev = nullptr;
         }
         length++;
     }
@@ -79,23 +79,23 @@ public:
         Node<T>* newNode = new Node<T>(data);
         Node<T> * temp = getWaypoint(index - 1);
         newNode->next = temp->next;
-        temp->next = newNode;
+        temp->next->prev = newNode;
         newNode->prev = temp;
+        temp->next = newNode;
         length++;
     }
     void removeWaypointAtBeginning() {
+        Node<T>* temp = head;
         if (length == 0) { // checks if list is empty
             return;
         }
-        Node<T>* temp = head;
         if (length == 1) {
             head = nullptr;
             tail = nullptr;
         }
         else {
             head = head->next;
-            tail->next = head;
-            head->prev = tail;
+            head->prev = nullptr;
         }
         delete temp;
         length--;
@@ -142,17 +142,17 @@ public:
 
     }
     void traverseBackward() {
-        Node<T> * pre;
-        Node<T> * curr;
-        Node<T> * next;
-        prev = nullptr;
-        curr = head;
-        while (curr != nullptr) {
-            next = curr->next;
-            curr->next = pre;
-            pre = curr;
-            curr = next;
-        }
+        //Node<T> * pre;
+        //Node<T> * curr;
+        //Node<T> * next;
+        //pre = nullptr;
+        //curr = head;
+        //while (curr != nullptr) {
+            //next = curr->next;
+            //curr->next = pre;
+            //pre = curr;
+            //curr = next;
+        //}
 
     }
     Node<T>* getWaypoint(int index) {

@@ -135,8 +135,20 @@ public:
     }
     void traverseForward() {
 
+
     }
     void traverseBackward() {
+        Node<T> * pre;
+        Node<T> * curr;
+        Node<T> * next;
+        prev = nullptr;
+        curr = head;
+        while (curr != nullptr) {
+            next = curr->next;
+            curr->next = pre;
+            pre = curr;
+            curr = next;
+        }
 
     }
     Node<T>* getWaypoint(int index) {

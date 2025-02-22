@@ -122,6 +122,15 @@ public:
         length--;
     }
     void removeWaypointAtIndex(int index) {
+        if (index < 0 || index >= length) {
+            return;
+        }
+        if (index == 0) {
+            return removeWaypointAtBeginning();
+        }
+        if (index == length - 1) {
+            return removeWaypointAtEnd();
+        }
 
     }
     void traverseForward() {

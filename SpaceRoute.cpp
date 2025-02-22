@@ -35,8 +35,19 @@ private:
     int length = 0; // Added length value
 
 public:
-    SpaceRoute(); // Constructor
-    ~SpaceRoute(); // Destructor
+    SpaceRoute() { // Constructor
+        head = nullptr;
+        tail = nullptr;
+        length = 0;
+    }
+    ~SpaceRoute() { // Destructor
+        Node<T>* temp = head;
+        while (head) {
+            head = head->next;
+            delete temp;
+            temp = head;
+        }
+    }
 
     void addWaypointAtBeginning(T& data) {
         Node<T>* newNode = new Node<T>(data);

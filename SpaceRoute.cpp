@@ -156,16 +156,10 @@ public:
 
     }
     void traverseBackward() {
-        Node<T> * pre;
-        Node<T> * curr;
-        Node<T> * next;
-        pre = nullptr;
-        curr = head;
-        while (curr != nullptr) {
-            next = curr->next;
-            curr->next = pre;
-            pre = curr;
-            curr = next;
+        Node<T> *temp = tail;
+        while (temp) {
+            temp->print();
+            temp = temp->prev;
         }
 
     }

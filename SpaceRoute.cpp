@@ -134,6 +134,10 @@ public:
 
     }
     void traverseForward() {
+        Node<T> *temp = head;
+        while (temp) {
+            temp = temp->next;
+        }
 
 
     }

@@ -177,7 +177,7 @@ public:
     }
 
     void setWaypoint(int index, T& data) {
-        Node<T> *temp = getWaypoint(index,data);
+        Node<T> *temp = getWaypoint(index);
         if (temp) {
             temp->data = data;
         }

@@ -40,5 +40,10 @@ int main() {
     cout << "\nAfter Removing Earth: \n";
     voyagerRoute.print();
 
+    string mercury = "Mercury";
+    voyagerRoute.setWaypoint(0, mercury);
+    cout << "\nReplacing Mars with Venus: \n";
+    voyagerRoute.print();
+
     return 0;
 }

@@ -101,10 +101,10 @@ public:
         length--;
     }
     void removeWaypointAtEnd() {
+        Node<T>* temp = head;
         if (length == 0) {
             return;
         }
-        Node<T>* temp = head;
         if (length == 1) {
             head = nullptr;
             tail = nullptr;
@@ -131,7 +131,12 @@ public:
         if (index == length - 1) {
             return removeWaypointAtEnd();
         }
-
+        Node<T> *prev = getWaypoint(index - 1);
+        Node<T>* temp = prev->next;
+        prev->next = temp-next;
+        temp->next->prev = prev;
+        delete temp;
+        length--;
     }
     void traverseForward() {
         Node<T> *temp = head;

@@ -32,18 +32,27 @@ int main() {
     cout << "\nAfter Removing Venus: \n";
     voyagerRoute.print();
 
+    // Added tests for remove at beginning & end
+
     voyagerRoute.removeWaypointAtEnd();
-    cout << "\nAfter Removing Saturn: \n";
+    cout << "\nAfter Removing Last Waypoint: \n";
     voyagerRoute.print();
 
     voyagerRoute.removeWaypointAtBeginning();
-    cout << "\nAfter Removing Earth: \n";
+    cout << "\nAfter Removing First Waypoint: \n";
     voyagerRoute.print();
 
+    // Added tests for set & get
+
     string mercury = "Mercury";
-    voyagerRoute.setWaypoint(0, mercury);
-    cout << "\nReplacing Mars with Venus: \n";
+    voyagerRoute.setWaypoint(1, mercury);
+    cout << "\nReplacing index one with Venus: \n";
     voyagerRoute.print();
+
+    Node<string>* waypointNode = voyagerRoute.getWaypoint(1);
+    if (waypointNode != nullptr) {
+        cout << "\nGetting index one:\n" << waypointNode->data;
+    }
 
     return 0;
 }

@@ -32,7 +32,7 @@ class SpaceRoute {
 private:
     Node<T>* head;
     Node<T>* tail;
-    int length = 0; // Added length value
+    int length; // Added length value
 
 public:
     SpaceRoute() { // Constructor
@@ -127,6 +127,7 @@ public:
         delete temp;
         length--;
     }
+
     void removeWaypointAtIndex(int index) {
         if (index < 0 || index >= length) { // checks for edge case: invalid index
             cout << "Index is out of bounds." << endl;

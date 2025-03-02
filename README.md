@@ -17,10 +17,10 @@ This method adds a new node to a specified index of the linked list. It begins b
 index is invalid, it will output that the index is out of bounds. If the index is zero, it calls the 
 addWaypointAtBeginning(data) method. If the index is the last index, it calls the addWaypointAtEnd(data) method. If the
 index is not an edge case, the method inserts the new node at the specified index by creating a temporary node that is 
-set to the node prior to the specified index and reassigns the pointers so that temporary node's next node is the new 
-node and the temporary node's original next node is the new node's next node. The tightest upperbound is O(N) because 
-the method calls on the getWaypoint method, which uses a for loop to find the node at the specified index. This means that 
-it must traverse through each element in the list until it reaches the specified index.
+set to the node prior to the node at the specified index and reassigns the pointers so that temporary node's next node 
+is the new node and the temporary node's original next node is the new node's next node. The tightest upperbound is O(N) 
+because the method calls on the getWaypoint method, which uses a for loop to find the node at the specified index. This 
+means that it must traverse through each element in the list until it reaches the specified index.
 
 void removeWaypointAtBeginning()
 This method removes the first node in the linked list. If the list is empty, it doesn't do anything. If the list
